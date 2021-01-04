@@ -23,14 +23,9 @@ for (let i = 0; i < listItem.length; i++) {
 for (let j = 0; j < lists.length; j++) {
   let list = lists[j]
 
-  list.addEventListener("dragenter", (e) => {
-    e.preventDefault()
-    list.style.background = `rgba(0, 0, 0, 1)`
-  })
-
   list.addEventListener("dragover", (e) => {
     e.preventDefault()
-    list.style.background = `rgba(0, 0, 0, 0)`
+    list.style.background = `rgba(0, 0, 0, .5)`
   })
 
   list.addEventListener("dragleave", (e) => {
