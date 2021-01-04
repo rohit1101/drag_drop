@@ -1,43 +1,44 @@
 const lists = document.querySelectorAll(".list")
 const listItem = document.querySelectorAll(".list-item ")
 
+let dragItem
+
 for (let i = 0; i < listItem.length; i++) {
-  const lItem = listItem[i]
+  const item = listItem[i]
 
-  lItem.addEventListener("dragstart", () => {
-    console.log("dragstart")
+  item.addEventListener("dragstart", () => {
+    dragItem = item
     setTimeout(() => {
-      lItem.style.display = "none"
+      dragItem.style.display = "none"
     }, 0)
   })
 
-  lItem.addEventListener("dragend", () => {
-    console.log("dragend")
-
+  item.addEventListener("dragend", () => {
     setTimeout(() => {
-      lItem.style.display = "block"
+      dragItem.style.display = "block"
     }, 0)
   })
+}
 
-  for (let j = 0; j < lists.length; j++) {
-    const list = lists[j]
+for (let j = 0; j < lists.length; j++) {
+  let list = lists[j]
 
-    list.addEventListener("dragover", (e) => {
-      e.preventDefault()
-    })
+  //   list.addEventListener("dragenter", (e) => {
+  //     e.preventDefault()
+  //   })
 
-    list.addEventListener("dragenter", (e) => {
-      e.preventDefault()
-    })
+  list.addEventListener("dragover", (e) => {
+    e.preventDefault()
+    list.style.background = `rgba(0, 0, 0, 0.4)`
+  })
 
-    list.addEventListener("dragover", (e) => {
-      e.preventDefault()
-    })
+  list.addEventListener("dragleave", (e) => {
+    e.preventDefault()
+    list.style.background = ""
+  })
 
-    list.addEventListener("drop", (e) => {
-      console.log("dropped", list, e)
-      e.target.append(lItem)
-      //   lItem.style.display = "block"
-    })
-  }
+  list.addEventListener("drop", function (e) {
+    list.append(dragItem)
+    list.style.background = "rgba(0,0,0,0.1)"
+  })
 }
