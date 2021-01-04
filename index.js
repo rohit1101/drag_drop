@@ -36,7 +36,7 @@ for (let i = 0; i < listItem.length; i++) {
 
     list.addEventListener("drop", (e) => {
       console.log("dropped", list, e)
-      list.append(lItem)
+      e.target.append(lItem)
       //   lItem.style.display = "block"
     })
   }
